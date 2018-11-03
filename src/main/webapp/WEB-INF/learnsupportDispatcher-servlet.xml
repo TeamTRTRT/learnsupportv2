@@ -36,13 +36,18 @@
 	<mvc:annotation-driven />  <!-- chú ý phải thêm dòng này thì dòng trên mới thực hiện được = ><mvc:resources mapping="/resources/**" location="/resources/css/" /> -->
 	
 	<!-- // mapping with database Mysql -->
-	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/WebLearn" />
-		<property name="username" value="root" />
-		<property name="password" value="123456789" />
-	</bean>
-	
+
+	<!-- don't forget the DataSource -->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/WebLearn"/>
+        <property name="username" value="root"/>
+        <property name="password" value="123456789"/>
+    </bean>
+
+    <!-- similarly, don't forget the PlatformTransactionManager -->
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
 	
 </beans>

@@ -1,5 +1,7 @@
 package my.com.entity;
 
+import java.util.List;
+
 public class Person {
 	private Integer id;
 	private String username;
@@ -37,5 +39,7 @@ public class Person {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	
 	
 }
